@@ -1,20 +1,19 @@
-import React, { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '../store/hooks';
-import { selectTableValue } from '../store/table/selectors';
-import { getUserAction } from '../store/table/thunkAction';
-import Spinner from './Shared/Spinner';
-import DataGrid from './Feature/DataGrid';
+import React from 'react';
 import Footer from './Core/Footer';
+import Navbar from './Core/Navbar';
+import { Route, Routes } from 'react-router-dom';
+import Home from './Feature/Home/Home';
+import NotFound from './Feature/NotFound/NotFound';
+import '../index.css';
 
 function App() {
-  const data = useAppSelector(selectTableValue);
-  const dispatch = useAppDispatch();
-  useEffect(() => {
-    dispatch(getUserAction());
-  }, []);
   return (
     <div className="flex h-screen flex-col w-screen justify-center">
-      <DataGrid data={data} />
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
       <Footer />
     </div>
   );

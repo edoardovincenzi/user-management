@@ -1,8 +1,10 @@
 import React from 'react';
+import { BsGithub } from 'react-icons/bs';
+import { CgWebsite } from 'react-icons/cg';
 
 const Footer = () => {
   return (
-    <div className="text-center bg-orange-200 w-screen mt-auto flex flex-col [& >*]:text-white">
+    <div className="py-4 text-center bg-indigo-500 w-screen mt-auto flex flex-col [&>*]:text-white">
       <p>Exercise by Edoardo Vincenzi</p>
       <div className="w-screen flex justify-center gap-4">
         <a
@@ -10,8 +12,8 @@ const Footer = () => {
           href="https://edoardovincenzi.netlify.app/"
           rel="noreferrer"
         >
-          <div className="flex_row_center">
-            {/* <WebAssetIcon /> */}
+          <div className="flex items-center justify-center gap-3 hover:underline">
+            <CgWebsite />
             <p>Sito web</p>
           </div>
         </a>
@@ -20,8 +22,8 @@ const Footer = () => {
           href="https://github.com/edoardovincenzi"
           rel="noreferrer"
         >
-          <div className="flex_row_center">
-            {/* <GitHubIcon /> */}
+          <div className="flex items-center justify-center gap-3 hover:underline">
+            <BsGithub />
             <p>GitHub</p>
           </div>
         </a>
