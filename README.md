@@ -24,7 +24,7 @@ Create a grid to render users from the JSON placeholder API (https://jsonplaceho
 
 :white_check_mark: Implement pagination to have a maximum of 5 records per view
 
-- In the data retrieve phase, the custom toolbar should be visible but the part of the columns and the rows should disappear and make a loader appear
+:white_check_mark: In the data retrieve phase, the custom toolbar should be visible but the part of the columns and the rows should disappear and make a loader appear
 
 ### The following optional 3 level activities:
 
