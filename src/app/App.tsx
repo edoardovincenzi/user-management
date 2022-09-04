@@ -5,15 +5,18 @@ import { Route, Routes } from 'react-router-dom';
 import Home from './Feature/Home/Home';
 import NotFound from './Feature/NotFound/NotFound';
 import '../index.css';
+import WrapContainer from './Shared/WrapContainer';
 
 function App() {
   return (
-    <div className="flex h-screen flex-col w-screen justify-center">
+    <div className="flex min-h-screen flex-col w-screen justify-center">
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <WrapContainer>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </WrapContainer>
       <Footer />
     </div>
   );
