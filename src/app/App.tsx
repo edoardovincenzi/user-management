@@ -9,7 +9,7 @@ import WrapContainer from './Shared/WrapContainer';
 
 function App() {
   return (
-    <div className="flex min-h-screen flex-col w-screen justify-center">
+    <div className="box-border flex min-h-screen flex-col w-screen justify-center">
       <Navbar />
       <WrapContainer>
         <Routes>

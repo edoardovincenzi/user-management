@@ -10,6 +10,7 @@
 
 # production
 /build
+syncfusion-license.txt
 
 # misc
 .DS_Store

@@ -18,7 +18,7 @@ const Form = () => {
   });
   return (
     <form
-      className="border-2 border-gray-700 rounded-md p-8 w-full h-full"
+      className="border-2 border-gray-700 rounded-md py-8 px-3 w-full h-full"
       onSubmit={formik.handleSubmit}
     >
       <div className="grid grid-cols-2 gap-4">

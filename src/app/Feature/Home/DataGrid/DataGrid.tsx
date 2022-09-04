@@ -34,6 +34,7 @@ const DataGrid = ({ data }: IProps) => {
       showColumnChooser={true}
       allowFiltering={true}
       filterSettings={filterOptions}
+      className="border-2 border-solid border-gray-700 rounded-md"
     >
       <ColumnsDirective>
         <ColumnDirective

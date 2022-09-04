@@ -36,4 +36,4 @@ Create a grid to render users from the JSON placeholder API (https://jsonplaceho
 - React router DOM
 - Typescript
 - Tailwind
-- Formik & yup
+- Formik
