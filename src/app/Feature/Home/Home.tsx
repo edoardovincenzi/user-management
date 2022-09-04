@@ -4,13 +4,17 @@ import {
   selectUsersDataGridValue,
   selectStatusDataGridValue,
 } from '../../../store/table/selectors';
-import { getUserAction } from '../../../store/table/thunkAction';
+import {
+  getUserAction,
+  postUserAction,
+} from '../../../store/table/thunkAction';
 import { useDebouncedCallback } from 'use-debounce';
 import Button from '../../Shared/Button';
 import Form from '../../Shared/Form';
 import DataGrid from './DataGrid/DataGrid';
 import Toolbar from './Toolbar/Toolbar';
 import { removeOddDataGrid } from '../../../store/table/tableSlice';
+import { IUser } from '../../Interfaces/api';
 
 const Home = () => {
   const data = useAppSelector(selectUsersDataGridValue);
@@ -25,6 +29,9 @@ const Home = () => {
     setShowGrid((prev) => !prev);
   };
 
+  const handleSubmit = (values: IUser) => {
+    dispatch(postUserAction(values));
+  };
   const debouncedRefreshDataGrid = useDebouncedCallback(
     // function
     (value) => {
@@ -40,7 +47,7 @@ const Home = () => {
 
   return (
     <div className="flex flex-col w-full px-2">
-      <Form />
+      <Form handleSubmit={handleSubmit} />
       <Button
         handleClick={handleClickShowHidden}
         text={showGrid ? 'Hidden table' : 'Show table'}

@@ -3,7 +3,11 @@ import { useFormik } from 'formik';
 import Button from './Button';
 import Input from './Input';
 
-const Form = () => {
+interface IProps {
+  handleSubmit: (args: any) => void;
+}
+
+const Form = ({ handleSubmit }: IProps) => {
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -13,7 +17,13 @@ const Form = () => {
       street: '',
     },
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      const dataPost = {
+        name: values.name,
+        email: values.email,
+        phone: values.phone,
+        address: { street: values.street, city: values.city },
+      };
+      handleSubmit(dataPost);
     },
   });
   return (

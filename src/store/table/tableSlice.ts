@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { IUsersState } from '../../app/Interfaces/store';
-import { getUserAction } from './thunkAction';
+import { getUserAction, postUserAction } from './thunkAction';
 
 const initialState: IUsersState = {
   usersDataGrid: { dataGrid: null, status: 'idle' },
@@ -38,6 +38,21 @@ export const tableSlice = createSlice({
         }
       })
       .addCase(getUserAction.rejected, (state) => {
+        state.usersDataGrid.status = 'failed';
+      })
+      .addCase(postUserAction.pending, (state) => {
+        state.usersDataGrid.status = 'loading';
+      })
+      .addCase(postUserAction.fulfilled, (state, action) => {
+        state.usersDataGrid.status = 'idle';
+        if (action.payload) {
+          state.usersDataGrid.dataGrid = state.usersDataGrid.dataGrid && [
+            action.payload,
+            ...state.usersDataGrid?.dataGrid,
+          ];
+        }
+      })
+      .addCase(postUserAction.rejected, (state) => {
         state.usersDataGrid.status = 'failed';
       });
   },
