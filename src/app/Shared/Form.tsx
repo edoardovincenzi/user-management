@@ -85,7 +85,7 @@ const Form = () => {
         </div>
       </div>
 
-      <Button type="submit" text="Submit" />
+      <Button className="mt-16 mb-4 mx-auto" type="submit" text="Submit" />
     </form>
   );
 };

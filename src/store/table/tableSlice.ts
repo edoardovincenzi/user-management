@@ -1,33 +1,48 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { CounterState } from '../../app/Interfaces/store';
+import { IUsersState } from '../../app/Interfaces/store';
 import { getUserAction } from './thunkAction';
 
-const initialState: CounterState = {
-  value: null,
-  status: 'idle',
+const initialState: IUsersState = {
+  usersDataGrid: { dataGrid: null, status: 'idle' },
 };
 
 export const tableSlice = createSlice({
   name: 'table',
   initialState,
-  reducers: {},
+  reducers: {
+    resetDataGrid(state: IUsersState): IUsersState {
+      return {
+        ...state,
+        usersDataGrid: { ...state.usersDataGrid, dataGrid: null },
+      };
+    },
+    removeOddDataGrid(state: IUsersState): IUsersState {
+      const evenUsersDataGrid =
+        state.usersDataGrid.dataGrid &&
+        state.usersDataGrid.dataGrid.filter((item, index) => index % 2 === 0);
+      return {
+        ...state,
+        usersDataGrid: { ...state.usersDataGrid, dataGrid: evenUsersDataGrid },
+      };
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getUserAction.pending, (state) => {
-        state.status = 'loading';
+        state.usersDataGrid.status = 'loading';
       })
       .addCase(getUserAction.fulfilled, (state, action) => {
-        state.status = 'idle';
+        state.usersDataGrid.status = 'idle';
         if (action.payload) {
-          state.value = action.payload;
+          state.usersDataGrid.dataGrid = action.payload;
         }
       })
       .addCase(getUserAction.rejected, (state) => {
-        state.status = 'failed';
+        state.usersDataGrid.status = 'failed';
       });
   },
 });
 
-export const {} = tableSlice.actions;
+export const { resetDataGrid, removeOddDataGrid } = tableSlice.actions;
 
 export default tableSlice.reducer;

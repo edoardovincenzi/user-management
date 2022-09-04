@@ -5,26 +5,36 @@ import {
   ColumnsDirective,
   FilterSettingsModel,
   GridComponent,
+  PageSettingsModel,
 } from '@syncfusion/ej2-react-grids';
 import {
   Inject,
   Toolbar,
   ToolbarItems,
   Filter,
+  Page,
 } from '@syncfusion/ej2-react-grids';
 import { IUser } from '../../../Interfaces/api';
 import Spinner from '../../../Shared/Spinner';
 
 interface IProps {
-  data: IUser | null;
+  data: IUser[] | null;
+  pending: boolean;
 }
 
-const DataGrid = ({ data }: IProps) => {
+const DataGrid = ({ data, pending }: IProps) => {
   const toolbarOptions: ToolbarItems[] = ['ColumnChooser'];
   const filterOptions: FilterSettingsModel = {
     type: 'Menu',
   };
-  if (!data) {
+  const pageOptions: PageSettingsModel = {
+    pageSize: 5,
+    pageSizes: true,
+  };
+  if (!data && !pending) {
+    return <p>Communication error with the server</p>;
+  }
+  if (!data || pending) {
     return <Spinner />;
   }
   return (
@@ -34,6 +44,8 @@ const DataGrid = ({ data }: IProps) => {
       showColumnChooser={true}
       allowFiltering={true}
       filterSettings={filterOptions}
+      allowPaging={true}
+      pageSettings={pageOptions}
       className="border-2 border-solid border-gray-700 rounded-md"
     >
       <ColumnsDirective>
@@ -71,7 +83,7 @@ const DataGrid = ({ data }: IProps) => {
           allowFiltering={false}
         />
       </ColumnsDirective>
-      <Inject services={[Toolbar, ColumnChooser, Filter]} />
+      <Inject services={[Toolbar, ColumnChooser, Filter, Page]} />
     </GridComponent>
   );
 };

@@ -18,9 +18,12 @@ Create a grid to render users from the JSON placeholder API (https://jsonplaceho
 
 ### Optional 2nd level activities:
 
-- Create a custom toolbar and introduce a refresh button to GET the data with a debounce (optional redux-saga)
-- On the custom toolbar add a button that removes only the odd lines
-- Implement pagination to have a maximum of 5 records per view
+:white_check_mark: Create a custom toolbar and introduce a refresh button to GET the data with a debounce (optional redux-saga)
+
+:white_check_mark: On the custom toolbar add a button that removes only the odd lines
+
+:white_check_mark: Implement pagination to have a maximum of 5 records per view
+
 - In the data retrieve phase, the custom toolbar should be visible but the part of the columns and the rows should disappear and make a loader appear
 
 ### The following optional 3 level activities:
@@ -37,3 +40,4 @@ Create a grid to render users from the JSON placeholder API (https://jsonplaceho
 - Typescript
 - Tailwind
 - Formik
+- use-debounce

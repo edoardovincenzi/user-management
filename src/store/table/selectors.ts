@@ -1,3 +1,7 @@
 import { RootState } from '../store';
 
-export const selectTableValue = (state: RootState) => state.table.value;
+export const selectUsersDataGridValue = (state: RootState) =>
+  state.table.usersDataGrid.dataGrid;
+
+export const selectStatusDataGridValue = (state: RootState) =>
+  state.table.usersDataGrid.status;

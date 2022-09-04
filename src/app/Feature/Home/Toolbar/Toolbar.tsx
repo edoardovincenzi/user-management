@@ -1,9 +1,13 @@
 import React from 'react';
 
-const Toolbar = () => {
+interface IProps {
+  children?: React.ReactNode;
+}
+
+const Toolbar = ({ children }: IProps) => {
   return (
-    <div className="py-4 text-center bg-indigo-500 w-screen flex flex-col [&>*]:text-white">
-      <p>Toolbar</p>
+    <div className="py-4 mb-4 gap-4 px-8 w-full flex rounded-md justify-end bg-gray-700 [&>*]:text-white">
+      {children}
     </div>
   );
 };
