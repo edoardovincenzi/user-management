@@ -1,3 +1,8 @@
+# FIX IN PROGRESS
+
+- Check if needing refactoring
+- Check pattern email for editing inline
+
 # Exercise user management
 
 Create a grid to render users from the JSON placeholder API (https://jsonplaceholder.typicode.com/users).
