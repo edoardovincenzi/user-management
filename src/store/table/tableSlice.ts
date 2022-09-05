@@ -1,6 +1,8 @@
+import { Filter } from '@syncfusion/ej2-react-grids';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IUsersState } from '../../app/Interfaces/store';
 import { getUserAction, postUserAction } from './thunkAction';
+import { IUser } from '../../app/Interfaces/api';
 
 const initialState: IUsersState = {
   usersDataGrid: { dataGrid: null, status: 'idle' },
@@ -24,6 +26,26 @@ export const tableSlice = createSlice({
         ...state,
         usersDataGrid: { ...state.usersDataGrid, dataGrid: evenUsersDataGrid },
       };
+    },
+    updateRowById(
+      state: IUsersState,
+      action: PayloadAction<IUser>
+    ): IUsersState {
+      const stateWithoutRowSelected =
+        state.usersDataGrid.dataGrid &&
+        state.usersDataGrid.dataGrid.filter(
+          (item) => action.payload.id !== item.id
+        );
+      if (stateWithoutRowSelected) {
+        return {
+          ...state,
+          usersDataGrid: {
+            ...state.usersDataGrid,
+            dataGrid: [action.payload, ...stateWithoutRowSelected],
+          },
+        };
+      }
+      return state;
     },
   },
   extraReducers: (builder) => {
@@ -58,6 +80,7 @@ export const tableSlice = createSlice({
   },
 });
 
-export const { resetDataGrid, removeOddDataGrid } = tableSlice.actions;
+export const { resetDataGrid, removeOddDataGrid, updateRowById } =
+  tableSlice.actions;
 
 export default tableSlice.reducer;
