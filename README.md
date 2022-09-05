@@ -29,7 +29,8 @@ Create a grid to render users from the JSON placeholder API (https://jsonplaceho
 ### The following optional 3 level activities:
 
 - Enable inline editing on the line
-- Add a button on each record that, if clicked or dbclicked, opens a new page that presents user information displayed only on fields of a form, not inside div or span tags
+
+:white_check_mark: Add a button on each record that, if clicked or dbclicked, opens a new page that presents user information displayed only on fields of a form, not inside div or span tags
 
 ## Library used:
 

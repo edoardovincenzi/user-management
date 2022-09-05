@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IUsersState } from '../../app/Interfaces/store';
 import { getUserAction, postUserAction } from './thunkAction';
 

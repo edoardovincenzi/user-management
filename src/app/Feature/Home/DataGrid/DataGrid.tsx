@@ -3,34 +3,26 @@ import {
   ColumnChooser,
   ColumnDirective,
   ColumnsDirective,
-  FilterSettingsModel,
   GridComponent,
-  PageSettingsModel,
 } from '@syncfusion/ej2-react-grids';
 import {
   Inject,
   Toolbar,
-  ToolbarItems,
   Filter,
   Page,
 } from '@syncfusion/ej2-react-grids';
 import { IUser } from '../../../Interfaces/api';
 import Spinner from '../../../Shared/Spinner';
-
+import useDataGrid from './useDataGrid';
 interface IProps {
   data: IUser[] | null;
   pending: boolean;
 }
 
 const DataGrid = ({ data, pending }: IProps) => {
-  const toolbarOptions: ToolbarItems[] = ['ColumnChooser'];
-  const filterOptions: FilterSettingsModel = {
-    type: 'Menu',
-  };
-  const pageOptions: PageSettingsModel = {
-    pageSize: 5,
-    pageSizes: true,
-  };
+  const { toolbarOptions, filterOptions, pageOptions, template } =
+    useDataGrid();
+
   if (!data && !pending) {
     return <p>Communication error with the server</p>;
   }
@@ -47,38 +39,46 @@ const DataGrid = ({ data, pending }: IProps) => {
       allowPaging={true}
       pageSettings={pageOptions}
       className="border-2 border-solid border-gray-700 rounded-md"
+      allowTextWrap={true}
     >
       <ColumnsDirective>
         <ColumnDirective
           field="name"
           headerText="Name"
-          width="100"
+          width="150"
           textAlign="Right"
         />
         <ColumnDirective
           field="email"
           headerText="Email"
-          width="100"
+          width="150"
           textAlign="Right"
           allowFiltering={false}
         />
         <ColumnDirective
           field="phone"
           headerText="Phone"
-          width="100"
+          width="150"
           textAlign="Right"
           allowFiltering={false}
         />
         <ColumnDirective
           field="address.city"
           headerText="City"
-          width="100"
+          width="150"
           textAlign="Right"
         />
         <ColumnDirective
           field="address.street"
           headerText="Street"
-          width="100"
+          width="150"
+          textAlign="Right"
+          allowFiltering={false}
+        />
+        <ColumnDirective
+          headerText="Details user"
+          template={template}
+          width="220"
           textAlign="Right"
           allowFiltering={false}
         />

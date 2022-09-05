@@ -1,53 +1,31 @@
-import React, { useEffect, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../../../store/hooks';
-import {
-  selectUsersDataGridValue,
-  selectStatusDataGridValue,
-} from '../../../store/table/selectors';
-import {
-  getUserAction,
-  postUserAction,
-} from '../../../store/table/thunkAction';
-import { useDebouncedCallback } from 'use-debounce';
+import React, { useEffect } from 'react';
+import { getUserAction } from '../../../store/table/thunkAction';
 import Button from '../../Shared/Button';
 import Form from '../../Shared/Form';
 import DataGrid from './DataGrid/DataGrid';
 import Toolbar from './Toolbar/Toolbar';
-import { removeOddDataGrid } from '../../../store/table/tableSlice';
-import { IUser } from '../../Interfaces/api';
+import useHome from './useHome';
 
 const Home = () => {
-  const data = useAppSelector(selectUsersDataGridValue);
-  const pending = useAppSelector(selectStatusDataGridValue) === 'loading';
-  const dispatch = useAppDispatch();
-  const [showGrid, setShowGrid] = useState<boolean>(false);
+  const {
+    formik,
+    handleClickRemoveOddRow,
+    debouncedRefreshDataGrid,
+    handleClickShowHidden,
+    showGrid,
+    pending,
+    data,
+    dispatch,
+  } = useHome();
   useEffect(() => {
-    dispatch(getUserAction());
-  }, []);
-
-  const handleClickShowHidden = () => {
-    setShowGrid((prev) => !prev);
-  };
-
-  const handleSubmit = (values: IUser) => {
-    dispatch(postUserAction(values));
-  };
-  const debouncedRefreshDataGrid = useDebouncedCallback(
-    // function
-    (value) => {
+    if (!data) {
       dispatch(getUserAction());
-    },
-    // delay in ms
-    250
-  );
-
-  const handleClickRemoveOddRow = () => {
-    dispatch(removeOddDataGrid());
-  };
+    }
+  }, []);
 
   return (
     <div className="flex flex-col w-full px-2">
-      <Form handleSubmit={handleSubmit} />
+      <Form formik={formik} />
       <Button
         handleClick={handleClickShowHidden}
         text={showGrid ? 'Hidden table' : 'Show table'}

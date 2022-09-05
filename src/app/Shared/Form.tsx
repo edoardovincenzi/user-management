@@ -1,31 +1,16 @@
 import React from 'react';
-import { useFormik } from 'formik';
+import { FormikProps } from 'formik';
 import Button from './Button';
 import Input from './Input';
 
+import { IUser } from '../Interfaces/api';
+
 interface IProps {
-  handleSubmit: (args: any) => void;
+  formDisabled?: boolean;
+  formik: FormikProps<IUser>;
 }
 
-const Form = ({ handleSubmit }: IProps) => {
-  const formik = useFormik({
-    initialValues: {
-      name: '',
-      email: '',
-      phone: '',
-      city: '',
-      street: '',
-    },
-    onSubmit: (values) => {
-      const dataPost = {
-        name: values.name,
-        email: values.email,
-        phone: values.phone,
-        address: { street: values.street, city: values.city },
-      };
-      handleSubmit(dataPost);
-    },
-  });
+const Form = ({ formDisabled = false, formik }: IProps) => {
   return (
     <form
       className="border-2 border-gray-700 rounded-md py-8 px-3 w-full h-full"
@@ -39,6 +24,7 @@ const Form = ({ handleSubmit }: IProps) => {
             name="name"
             type="text"
             required={true}
+            disabled={formDisabled}
             placeholder="Insert name here"
             onChange={formik.handleChange}
             value={formik.values.name}
@@ -51,6 +37,7 @@ const Form = ({ handleSubmit }: IProps) => {
             name="email"
             type="email"
             required={true}
+            disabled={formDisabled}
             pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
             placeholder="Insert email address here"
             onChange={formik.handleChange}
@@ -62,8 +49,9 @@ const Form = ({ handleSubmit }: IProps) => {
           <Input
             id="phone"
             name="phone"
-            type="number"
+            type="string"
             required={true}
+            disabled={formDisabled}
             placeholder="Insert number phone (no prefix) here"
             onChange={formik.handleChange}
             value={formik.values.phone}
@@ -73,29 +61,37 @@ const Form = ({ handleSubmit }: IProps) => {
           <label htmlFor="city">City</label>
           <Input
             id="city"
-            name="city"
+            name="address.city"
             type="text"
             required={true}
+            disabled={formDisabled}
             placeholder="Insert city here"
             onChange={formik.handleChange}
-            value={formik.values.city}
+            value={formik.values.address.city}
           />
         </div>
         <div>
           <label htmlFor="street">Street</label>
           <Input
             id="street"
-            name="street"
+            name="address.street"
             type="text"
             required={true}
+            disabled={formDisabled}
             placeholder="Insert street address here"
             onChange={formik.handleChange}
-            value={formik.values.street}
+            value={formik.values.address.street}
           />
         </div>
       </div>
 
-      <Button className="mt-16 mb-4 mx-auto" type="submit" text="Submit" />
+      {!formDisabled ? (
+        <Button
+          className="mt-16 mb-4 flex mx-auto"
+          type="submit"
+          text="Submit"
+        />
+      ) : null}
     </form>
   );
 };
