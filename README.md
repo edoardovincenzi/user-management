@@ -1,6 +1,5 @@
 # FIX IN PROGRESS
 
-- Check if needing refactoring
 - Check pattern email for editing inline
 
 # Exercise user management

@@ -1,4 +1,3 @@
-import { Filter } from '@syncfusion/ej2-react-grids';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IUsersState } from '../../app/Interfaces/store';
 import { getUserAction, postUserAction } from './thunkAction';
@@ -19,9 +18,9 @@ export const tableSlice = createSlice({
       };
     },
     removeOddDataGrid(state: IUsersState): IUsersState {
-      const evenUsersDataGrid =
-        state.usersDataGrid.dataGrid &&
-        state.usersDataGrid.dataGrid.filter((item, index) => index % 2 === 0);
+      const evenUsersDataGrid = state.usersDataGrid.dataGrid
+        ? state.usersDataGrid.dataGrid.filter((item, index) => index % 2 === 0)
+        : null;
       return {
         ...state,
         usersDataGrid: { ...state.usersDataGrid, dataGrid: evenUsersDataGrid },
@@ -31,11 +30,11 @@ export const tableSlice = createSlice({
       state: IUsersState,
       action: PayloadAction<IUser>
     ): IUsersState {
-      const stateWithoutRowSelected =
-        state.usersDataGrid.dataGrid &&
-        state.usersDataGrid.dataGrid.filter(
-          (item) => action.payload.id !== item.id
-        );
+      const stateWithoutRowSelected = state.usersDataGrid.dataGrid
+        ? state.usersDataGrid.dataGrid.filter(
+            (item) => action.payload.id !== item.id
+          )
+        : null;
       if (stateWithoutRowSelected) {
         return {
           ...state,

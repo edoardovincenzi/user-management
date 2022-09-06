@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import {
   selectUsersDataGridValue,
@@ -9,10 +9,6 @@ import {
   postUserAction,
 } from '../../../store/table/thunkAction';
 import { useDebouncedCallback } from 'use-debounce';
-import Button from '../../Shared/Button';
-import Form from '../../Shared/Form';
-import DataGrid from './DataGrid/DataGrid';
-import Toolbar from './Toolbar/Toolbar';
 import { removeOddDataGrid } from '../../../store/table/tableSlice';
 import { IUser } from '../../Interfaces/api';
 import { FormikProps, useFormik } from 'formik';

@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  DialogEditEventArgs,
   FilterSettingsModel,
   PageSettingsModel,
 } from '@syncfusion/ej2-react-grids';
