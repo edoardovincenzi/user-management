@@ -7,7 +7,7 @@ import Router from './Router';
 
 function App() {
   return (
-    <div className="box-border flex min-h-screen flex-col w-screen justify-center">
+    <div className="box-border flex min-h-screen flex-col justify-center">
       <Navbar />
       <WrapContainer>
         <Router />
