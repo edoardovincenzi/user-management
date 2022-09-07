@@ -13,11 +13,7 @@ interface IProps {
 }
 
 const Form = ({ formDisabled = false, formik }: IProps) => {
-  let getUserById;
-  useEffect(() => {
-    getUserById = useAppSelector(selectUserDetailataGrid);
-  }, []);
-
+  const getUserById = useAppSelector(selectUserDetailataGrid);
   useEffect(() => {
     if (getUserById.user) {
       formik.setValues(getUserById.user);
