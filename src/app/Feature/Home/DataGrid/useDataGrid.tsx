@@ -34,7 +34,7 @@ const useDataGrid = () => {
   //any beacuse in documentation give me this type
   const openDetailsUsers = (props: any): any => {
     return (
-      <Link to={`userDetails/${props.id}`} target="_blank">
+      <Link to={`userDetails/${props.id}`}>
         <Button text="Open details user" />
       </Link>
     );

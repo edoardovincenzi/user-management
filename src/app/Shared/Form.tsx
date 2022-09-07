@@ -2,32 +2,29 @@ import React, { useEffect } from 'react';
 import { FormikProps } from 'formik';
 import Button from './Button';
 import Input from './Input';
-
 import { IUser } from '../Interfaces/api';
-import { useAppSelector } from '../../store/hooks';
-import { selectUserDetailataGrid } from '../../store/table/selectors';
+import { IUserDetail } from '../Interfaces/store';
+import Spinner from './Spinner';
 
 interface IProps {
   formDisabled?: boolean;
+  formData?: IUserDetail;
   formik: FormikProps<IUser>;
 }
 
-const Form = ({ formDisabled = false, formik }: IProps) => {
-  const getUserById = useAppSelector(selectUserDetailataGrid);
+const Form = ({ formDisabled = false, formData, formik }: IProps) => {
   useEffect(() => {
-    if (getUserById.user) {
-      formik.setValues(getUserById.user);
+    if (formData?.user && formDisabled) {
+      formik.setValues(formData.user);
     }
-  }, [getUserById.user?.id]);
+  }, [formData?.user]);
 
-  // if (
-  //   formDisabled &&
-  //   getUserById.status === 'idle' &&
-  //   getUserById.user &&
-  //   formik.values.id === -1
-  // ) {
-
-  // }
+  if (formDisabled && formData?.status === 'failed') {
+    return <p>Error for getting data</p>;
+  }
+  if (formDisabled && formData?.status === 'loading') {
+    return <Spinner />;
+  }
   return (
     <form
       className="border-2 border-gray-700 rounded-md py-8 px-3 w-full h-full"
@@ -103,11 +100,14 @@ const Form = ({ formDisabled = false, formik }: IProps) => {
       </div>
 
       {!formDisabled ? (
-        <Button
-          className="mt-16 mb-4 flex mx-auto"
-          type="submit"
-          text="Submit"
-        />
+        <div className="flex flex-col items-center justify-center">
+          <Button
+            className="mt-16 mb-4 flex mx-auto"
+            type="submit"
+            text="Submit"
+          />
+          <p className="text-red-600">{formik.errors.submit}</p>
+        </div>
       ) : null}
     </form>
   );

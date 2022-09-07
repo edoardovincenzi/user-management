@@ -1,12 +1,15 @@
 import { IUser } from './api';
 
+export interface ITable {
+  table: IUsersState;
+}
 export interface IUsersState {
   usersDataGrid: IUsersDataGrid;
   userDetail: IUserDetail;
 }
 
 export type IUserDetail = {
-  user: IUser | null;
+  user: IUser;
   status: IStatus;
 };
 

@@ -4,10 +4,14 @@ import Form from '../../Shared/Form';
 import useDetailUser from './useDetailUser';
 
 const DetailUser = () => {
-  const { formik } = useDetailUser();
+  const { formik, getValueUserById, getStatusUserById } = useDetailUser();
   return (
     <div className="flex flex-col justify-center items-center gap-6">
-      <Form formDisabled={true} formik={formik} />{' '}
+      <Form
+        formDisabled={true}
+        formData={{ status: getStatusUserById, user: getValueUserById }}
+        formik={formik}
+      />{' '}
       <Link to={'/'}>
         <Button text="Back to home" />
       </Link>

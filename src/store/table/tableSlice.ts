@@ -7,9 +7,20 @@ import {
 } from './thunkAction';
 import { IUser } from '../../app/Interfaces/api';
 
+export const initialStateUser = {
+  id: -1,
+  name: '',
+  email: '',
+  phone: '',
+  address: { city: '', street: '' },
+};
+
 const initialState: IUsersState = {
   usersDataGrid: { dataGrid: null, status: 'idle' },
-  userDetail: { user: null, status: 'idle' },
+  userDetail: {
+    user: initialStateUser,
+    status: 'idle',
+  },
 };
 
 export const tableSlice = createSlice({
@@ -51,6 +62,13 @@ export const tableSlice = createSlice({
       }
       return state;
     },
+    resetUserDetail(state: IUsersState): IUsersState {
+      return {
+        ...state,
+        userDetail: { user: initialStateUser, status: 'idle' },
+        usersDataGrid: state.usersDataGrid,
+      };
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -66,9 +84,9 @@ export const tableSlice = createSlice({
       .addCase(getUsersAction.rejected, (state) => {
         state.usersDataGrid.status = 'failed';
       })
-      .addCase(postUserAction.pending, (state) => {
-        state.usersDataGrid.status = 'loading';
-      })
+      // .addCase(postUserAction.pending, (state) => {
+      //   state.usersDataGrid.status = 'loading';
+      // })
       .addCase(postUserAction.fulfilled, (state, action) => {
         state.usersDataGrid.status = 'idle';
         if (action.payload) {
@@ -96,7 +114,11 @@ export const tableSlice = createSlice({
   },
 });
 
-export const { resetDataGrid, removeOddDataGrid, updateRowById } =
-  tableSlice.actions;
+export const {
+  resetDataGrid,
+  removeOddDataGrid,
+  updateRowById,
+  resetUserDetail,
+} = tableSlice.actions;
 
 export default tableSlice.reducer;
