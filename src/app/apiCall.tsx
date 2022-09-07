@@ -1,10 +1,20 @@
 import axios from 'axios';
 import { IUser } from './Interfaces/api';
 
-export async function getUser(): Promise<IUser[] | undefined> {
+export async function getUsers(): Promise<IUser[] | undefined> {
   try {
     return await (
       await axios.get('https://jsonplaceholder.typicode.com/users')
+    ).data;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function getUserById(id: number): Promise<IUser | undefined> {
+  try {
+    return await (
+      await axios.get(`https://jsonplaceholder.typicode.com/users/${id}`)
     ).data;
   } catch (error) {
     console.error(error);

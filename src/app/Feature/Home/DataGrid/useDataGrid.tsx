@@ -5,13 +5,12 @@ import {
 } from '@syncfusion/ej2-react-grids';
 import { ToolbarItems } from '@syncfusion/ej2-react-grids';
 import Button from '../../../Shared/Button';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useAppDispatch } from '../../../../store/hooks';
 import { IUser } from '../../../Interfaces/api';
 import { updateRowById } from '../../../../store/table/tableSlice';
 
 const useDataGrid = () => {
-  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const toolbarOptions: ToolbarItems[] = [
     'ColumnChooser',
@@ -32,16 +31,15 @@ const useDataGrid = () => {
     allowEditing: true,
     showDeleteConfirmDialog: true,
   };
-
-  const template = (props: any): any => {
+  //any beacuse in documentation give me this type
+  const openDetailsUsers = (props: any): any => {
     return (
-      <Button
-        text="Open details user"
-        handleClick={() => navigate(`userDetails/${props.id}`)}
-      />
+      <Link to={`userDetails/${props.id}`} target="_blank">
+        <Button text="Open details user" />
+      </Link>
     );
   };
-
+  //any beacuse in documentation give me this type
   const actionComplete = (args: any) => {
     if (args.requestType === 'save') {
       if (args.data) {
@@ -53,7 +51,7 @@ const useDataGrid = () => {
     toolbarOptions,
     filterOptions,
     pageOptions,
-    template,
+    openDetailsUsers,
     editOptions,
     actionComplete,
   };

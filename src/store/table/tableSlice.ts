@@ -1,10 +1,15 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IUsersState } from '../../app/Interfaces/store';
-import { getUserAction, postUserAction } from './thunkAction';
+import {
+  getUsersAction,
+  postUserAction,
+  getUserByIdAction,
+} from './thunkAction';
 import { IUser } from '../../app/Interfaces/api';
 
 const initialState: IUsersState = {
   usersDataGrid: { dataGrid: null, status: 'idle' },
+  userDetail: { user: null, status: 'idle' },
 };
 
 export const tableSlice = createSlice({
@@ -49,16 +54,16 @@ export const tableSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getUserAction.pending, (state) => {
+      .addCase(getUsersAction.pending, (state) => {
         state.usersDataGrid.status = 'loading';
       })
-      .addCase(getUserAction.fulfilled, (state, action) => {
+      .addCase(getUsersAction.fulfilled, (state, action) => {
         state.usersDataGrid.status = 'idle';
         if (action.payload) {
           state.usersDataGrid.dataGrid = action.payload;
         }
       })
-      .addCase(getUserAction.rejected, (state) => {
+      .addCase(getUsersAction.rejected, (state) => {
         state.usersDataGrid.status = 'failed';
       })
       .addCase(postUserAction.pending, (state) => {
@@ -75,6 +80,18 @@ export const tableSlice = createSlice({
       })
       .addCase(postUserAction.rejected, (state) => {
         state.usersDataGrid.status = 'failed';
+      })
+      .addCase(getUserByIdAction.pending, (state) => {
+        state.userDetail.status = 'loading';
+      })
+      .addCase(getUserByIdAction.fulfilled, (state, action) => {
+        state.userDetail.status = 'idle';
+        if (action.payload) {
+          state.userDetail.user = action.payload;
+        }
+      })
+      .addCase(getUserByIdAction.rejected, (state) => {
+        state.userDetail.status = 'failed';
       });
   },
 });

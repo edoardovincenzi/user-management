@@ -5,7 +5,7 @@ import {
   selectStatusDataGridValue,
 } from '../../../store/table/selectors';
 import {
-  getUserAction,
+  getUsersAction,
   postUserAction,
 } from '../../../store/table/thunkAction';
 import { useDebouncedCallback } from 'use-debounce';
@@ -17,21 +17,22 @@ const useHome = () => {
   const data = useAppSelector(selectUsersDataGridValue);
   const pending = useAppSelector(selectStatusDataGridValue) === 'loading';
   const dispatch = useAppDispatch();
-  const [showGrid, setShowGrid] = useState<boolean>(false);
+  const [showGrid, setShowGrid] = useState<boolean>(true);
 
   const handleSubmit = (values: IUser) => {
     dispatch(postUserAction(values));
   };
+  const initialValues = {
+    id: -1,
+    name: '',
+    email: '',
+    phone: '',
+    address: { city: '', street: '' },
+  };
 
   const formik: FormikProps<IUser> = useFormik<IUser>({
-    initialValues: {
-      id: -1,
-      name: '',
-      email: '',
-      phone: '',
-      address: { city: '', street: '' },
-    },
-    onSubmit: (values) => {
+    initialValues,
+    onSubmit: (values, { resetForm }) => {
       const dataPost = {
         name: values.name,
         email: values.email,
@@ -39,6 +40,7 @@ const useHome = () => {
         address: { street: values.address.street, city: values.address.city },
       };
       handleSubmit && handleSubmit(dataPost);
+      resetForm();
     },
   });
   const handleClickShowHidden = () => {
@@ -48,7 +50,7 @@ const useHome = () => {
   const debouncedRefreshDataGrid = useDebouncedCallback(
     // function
     (value) => {
-      dispatch(getUserAction());
+      dispatch(getUsersAction());
     },
     // delay in ms
     250

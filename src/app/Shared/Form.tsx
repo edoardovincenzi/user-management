@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FormikProps } from 'formik';
 import Button from './Button';
 import Input from './Input';
 
 import { IUser } from '../Interfaces/api';
+import { useAppSelector } from '../../store/hooks';
+import { selectUserDetailataGrid } from '../../store/table/selectors';
 
 interface IProps {
   formDisabled?: boolean;
@@ -11,6 +13,25 @@ interface IProps {
 }
 
 const Form = ({ formDisabled = false, formik }: IProps) => {
+  let getUserById;
+  useEffect(() => {
+    getUserById = useAppSelector(selectUserDetailataGrid);
+  }, []);
+
+  useEffect(() => {
+    if (getUserById.user) {
+      formik.setValues(getUserById.user);
+    }
+  }, [getUserById.user?.id]);
+
+  // if (
+  //   formDisabled &&
+  //   getUserById.status === 'idle' &&
+  //   getUserById.user &&
+  //   formik.values.id === -1
+  // ) {
+
+  // }
   return (
     <form
       className="border-2 border-gray-700 rounded-md py-8 px-3 w-full h-full"

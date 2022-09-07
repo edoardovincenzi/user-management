@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { getUserAction } from '../../../store/table/thunkAction';
+import { getUsersAction } from '../../../store/table/thunkAction';
 import Button from '../../Shared/Button';
 import Form from '../../Shared/Form';
 import DataGrid from './DataGrid/DataGrid';
@@ -19,7 +19,7 @@ const Home = () => {
   } = useHome();
   useEffect(() => {
     if (!data) {
-      dispatch(getUserAction());
+      dispatch(getUsersAction());
     }
   }, []);
 
@@ -38,7 +38,7 @@ const Home = () => {
           handleClick={debouncedRefreshDataGrid}
         />
       </Toolbar>
-      {showGrid ? <DataGrid data={data} pending={pending} /> : null}
+      <DataGrid visible={showGrid} data={data} pending={pending} />
     </div>
   );
 };

@@ -1,17 +1,23 @@
 import { IUser } from './../../app/Interfaces/api';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { getUser, postUser } from '../../app/apiCall';
+import { getUsers, postUser, getUserById } from '../../app/apiCall';
 
-export const getUserAction = createAsyncThunk(
-  'table/fetchDataTable',
+export const getUsersAction = createAsyncThunk(
+  'table/getUsersAction',
   async () => {
-    return await getUser();
+    return await getUsers();
   }
 );
 
 export const postUserAction = createAsyncThunk(
-  'table/postUser',
+  'table/postUserAction',
   async (user: IUser) => {
     return await postUser(user);
+  }
+);
+export const getUserByIdAction = createAsyncThunk(
+  'table/getUserByIdAction',
+  async (id: number) => {
+    return await getUserById(id);
   }
 );

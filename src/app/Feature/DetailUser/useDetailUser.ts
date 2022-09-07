@@ -1,14 +1,21 @@
+import { useAppDispatch } from './../../../store/hooks';
 import { FormikProps, useFormik } from 'formik';
 import { useParams } from 'react-router-dom';
-import { useAppSelector } from '../../../store/hooks';
-import { selectUserByIdDataGrid } from '../../../store/table/selectors';
 import { IUser } from '../../Interfaces/api';
+import { getUserByIdAction } from '../../../store/table/thunkAction';
 
 const useDetailUser = () => {
   const { id = -1 } = useParams();
-  const getUserById = useAppSelector(selectUserByIdDataGrid(Number(id)));
+  const dispath = useAppDispatch();
+  dispath(getUserByIdAction(Number(id)));
   const formik: FormikProps<IUser> = useFormik<IUser>({
-    initialValues: getUserById[0],
+    initialValues: {
+      id: -1,
+      name: '',
+      email: '',
+      phone: '',
+      address: { city: '', street: '' },
+    },
     onSubmit: (values) => {},
   });
   return { formik };
