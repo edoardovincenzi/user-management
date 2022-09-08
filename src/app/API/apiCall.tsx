@@ -1,13 +1,14 @@
 import axios from 'axios';
 import { FormikState } from 'formik';
-import { IPostUser, IUser } from './Interfaces/api';
+import { IPostUser, IUser } from '../Interfaces/api';
+import { baseUrl } from './costants';
 
 export async function getUsers(
   rejectWithValue: any
 ): Promise<IUser[] | undefined> {
   try {
     return await (
-      await axios.get('https://jsonplaceholder.typicode.com/userss')
+      await axios.get(`${baseUrl}`)
     ).data;
   } catch (error: any) {
     console.error(error);
@@ -21,7 +22,7 @@ export async function getUserById(
 ): Promise<IUser | undefined> {
   try {
     return await (
-      await axios.get(`https://jsonplaceholder.typicode.com/users/${id}`)
+      await axios.get(`${baseUrl}/${id}`)
     ).data;
   } catch (error: any) {
     console.error(error);
@@ -37,7 +38,7 @@ export async function postUser(
 ): Promise<IUser | undefined> {
   try {
     const dataReturn = await (
-      await axios.post('https://jsonplaceholder.typicode.com/users', {
+      await axios.post(`${baseUrl}`, {
         userPost,
       })
     ).data;

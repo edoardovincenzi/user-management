@@ -1,6 +1,6 @@
 import { IPostUser, IUser } from './../../app/Interfaces/api';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { getUsers, postUser, getUserById } from '../../app/apiCall';
+import { getUsers, postUser, getUserById } from '../../app/API/apiCall';
 import { ITable } from '../../app/Interfaces/store';
 import { FormikState } from 'formik';
 

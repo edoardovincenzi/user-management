@@ -20,7 +20,7 @@ const Form = ({ formDisabled = false, formData, formik }: IProps) => {
   }, [formData?.user]);
 
   if (formDisabled && formData?.status === 'failed') {
-    return <p>Error for getting data</p>;
+    return <p className="text-center text-red-600">Error for getting data</p>;
   }
   if (formDisabled && formData?.status === 'loading') {
     return <Spinner />;

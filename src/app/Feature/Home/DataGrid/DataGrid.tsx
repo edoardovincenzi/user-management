@@ -33,7 +33,7 @@ const DataGrid = ({ data, statusGetData, visible = true }: IProps) => {
     actionComplete,
   } = useDataGrid();
 
-  if (statusGetData === 'failed') {
+  if ((!data || data.length < 1) && statusGetData === 'failed') {
     return (
       <p className="text-center text-red-600">
         Communication error with the server
