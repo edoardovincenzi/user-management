@@ -7,7 +7,7 @@ export async function getUsers(
 ): Promise<IUser[] | undefined> {
   try {
     return await (
-      await axios.get('https://jsonplaceholder.typicode.com/users')
+      await axios.get('https://jsonplaceholder.typicode.com/userss')
     ).data;
   } catch (error: any) {
     console.error(error);
@@ -20,10 +20,9 @@ export async function getUserById(
   rejectWithValue: any
 ): Promise<IUser | undefined> {
   try {
-    const dataReturn = await (
+    return await (
       await axios.get(`https://jsonplaceholder.typicode.com/users/${id}`)
     ).data;
-    return dataReturn;
   } catch (error: any) {
     console.error(error);
     return rejectWithValue(error.response.data);

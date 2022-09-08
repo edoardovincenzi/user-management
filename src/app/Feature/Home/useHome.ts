@@ -13,12 +13,12 @@ import {
   removeOddDataGrid,
   resetUserDetail,
 } from '../../../store/table/tableSlice';
-import { IPostUser, IUser } from '../../Interfaces/api';
+import { IUser } from '../../Interfaces/api';
 import { FormikProps, useFormik } from 'formik';
 
 const useHome = () => {
   const data = useAppSelector(selectUsersDataGridValue);
-  const pending = useAppSelector(selectStatusDataGridValue) === 'loading';
+  const dataStatus = useAppSelector(selectStatusDataGridValue);
   const dispatch = useAppDispatch();
   const [showGrid, setShowGrid] = useState<boolean>(true);
   useEffect(() => {
@@ -74,7 +74,7 @@ const useHome = () => {
     debouncedRefreshDataGrid,
     handleClickShowHidden,
     showGrid,
-    pending,
+    dataStatus,
     data,
     dispatch,
   };

@@ -90,10 +90,9 @@ export const tableSlice = createSlice({
       .addCase(postUserAction.fulfilled, (state, action) => {
         state.usersDataGrid.status = 'idle';
         if (action.payload) {
-          state.usersDataGrid.dataGrid = state.usersDataGrid.dataGrid && [
-            action.payload,
-            ...state.usersDataGrid?.dataGrid,
-          ];
+          state.usersDataGrid.dataGrid = state?.usersDataGrid?.dataGrid
+            ? [action.payload, ...state.usersDataGrid.dataGrid]
+            : [action.payload];
         }
       })
       .addCase(postUserAction.rejected, (state) => {

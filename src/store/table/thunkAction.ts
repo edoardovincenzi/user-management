@@ -38,11 +38,11 @@ export const getUserByIdAction = createAsyncThunk(
   'table/getUserByIdAction',
   async (id: number, thunkAPI) => {
     const state = thunkAPI.getState() as ITable;
-    if (state?.table?.usersDataGrid?.dataGrid) {
-      return state.table.usersDataGrid.dataGrid.filter(
-        (item) => item.id === id
-      )[0];
-    }
-    return await getUserById(id, thunkAPI.rejectWithValue);
+    const getUserFromDataGrid = state?.table?.usersDataGrid?.dataGrid
+      ? state.table.usersDataGrid.dataGrid.filter((item) => item.id === id)[0]
+      : null;
+    return getUserFromDataGrid
+      ? getUserFromDataGrid
+      : await getUserById(id, thunkAPI.rejectWithValue);
   }
 );

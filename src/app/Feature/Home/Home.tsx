@@ -13,7 +13,7 @@ const Home = () => {
     debouncedRefreshDataGrid,
     handleClickShowHidden,
     showGrid,
-    pending,
+    dataStatus,
     data,
     dispatch,
   } = useHome();
@@ -38,7 +38,7 @@ const Home = () => {
           handleClick={debouncedRefreshDataGrid}
         />
       </Toolbar>
-      <DataGrid visible={showGrid} data={data} pending={pending} />
+      <DataGrid visible={showGrid} data={data} statusGetData={dataStatus} />
     </div>
   );
 };
