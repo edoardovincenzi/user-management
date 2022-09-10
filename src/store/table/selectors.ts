@@ -1,5 +1,5 @@
-import { IUser } from './../../app/Interfaces/api';
-import { IStatus } from './../../app/Interfaces/store';
+import { IUser } from 'app/model/api';
+import { IStatus } from 'app/model/store';
 import { RootState } from '../store';
 
 export const selectUsersDataGridValue = (state: RootState) =>

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import DetailUser from './Feature/DetailUser/DetailUser';
-import Home from './Feature/Home/Home';
-import NotFound from './Feature/NotFound/NotFound';
+import DetailUser from './features/DetailUser/DetailUser';
+import Home from './features/Home/Home';
+import NotFound from './features/NotFound/NotFound';
 
 const Router = () => {
   return (

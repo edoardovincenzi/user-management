@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IUsersState } from '../../app/Interfaces/store';
+import { IUsersState } from 'app/model/store';
 import {
   getUsersAction,
   postUserAction,
   getUserByIdAction,
 } from './thunkAction';
-import { IUser } from '../../app/Interfaces/api';
+import { IUser } from 'app/model/api';
 
 export const initialStateUser = {
   id: -1,

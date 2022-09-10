@@ -4,10 +4,10 @@ import {
   PageSettingsModel,
 } from '@syncfusion/ej2-react-grids';
 import { ToolbarItems } from '@syncfusion/ej2-react-grids';
-import Button from '../../../Shared/Button';
+import Button from 'app/shared/Button';
 import { Link } from 'react-router-dom';
 import { useAppDispatch } from '../../../../store/hooks';
-import { IUser } from '../../../Interfaces/api';
+import { IUser } from 'app/model/api';
 import { updateRowById } from '../../../../store/table/tableSlice';
 
 const useDataGrid = () => {

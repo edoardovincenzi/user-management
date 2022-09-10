@@ -13,7 +13,7 @@ import {
   removeOddDataGrid,
   resetUserDetail,
 } from '../../../store/table/tableSlice';
-import { IUser } from '../../Interfaces/api';
+import { IUser } from 'app/model/api';
 import { FormikProps, useFormik } from 'formik';
 
 const useHome = () => {

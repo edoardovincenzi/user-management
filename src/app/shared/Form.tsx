@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { FormikProps } from 'formik';
 import Button from './Button';
 import Input from './Input';
-import { IUser } from '../Interfaces/api';
-import { IUserDetail } from '../Interfaces/store';
+import { IUser } from '../model/api';
+import { IUserDetail } from '../model/store';
 import Spinner from './Spinner';
 
 interface IProps {

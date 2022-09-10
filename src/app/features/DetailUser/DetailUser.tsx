@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import Button from '../../Shared/Button';
-import Form from '../../Shared/Form';
+import Button from 'app/shared/Button';
+import Form from 'app/shared/Form';
 import useDetailUser from './useDetailUser';
 
 const DetailUser = () => {

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { FormikState } from 'formik';
-import { IPostUser, IUser } from '../Interfaces/api';
+import { IPostUser, IUser } from '../model/api';
 import { baseUrl } from './costants';
 
 export async function getUsers(

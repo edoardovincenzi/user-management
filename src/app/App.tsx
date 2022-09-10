@@ -1,8 +1,8 @@
 import React from 'react';
-import Footer from './Core/Footer';
-import Navbar from './Core/Navbar';
+import Footer from './core/Footer';
+import Navbar from './core/Navbar';
 import '../index.css';
-import WrapContainer from './Shared/WrapContainer';
+import WrapContainer from './shared/WrapContainer';
 import Router from './Router';
 
 function App() {

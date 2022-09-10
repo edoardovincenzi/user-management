@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from './../../../store/hooks';
 import { FormikProps, useFormik } from 'formik';
 import { useParams } from 'react-router-dom';
-import { IUser } from '../../Interfaces/api';
+import { IUser } from 'app/model/api';
 import { getUserByIdAction } from '../../../store/table/thunkAction';
 import {
   selectValueUserDetail,

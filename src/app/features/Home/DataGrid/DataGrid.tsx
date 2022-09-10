@@ -12,10 +12,10 @@ import {
   Page,
   Edit,
 } from '@syncfusion/ej2-react-grids';
-import { IUser } from '../../../Interfaces/api';
-import Spinner from '../../../Shared/Spinner';
+import { IUser } from 'app/model/api';
+import Spinner from 'app/shared/Spinner';
 import useDataGrid from './useDataGrid';
-import { IStatus } from '../../../Interfaces/store';
+import { IStatus } from 'app/model/store';
 
 interface IProps {
   data: IUser[] | null;

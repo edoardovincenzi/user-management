@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import { getUsersAction } from '../../../store/table/thunkAction';
-import Button from '../../Shared/Button';
-import Form from '../../Shared/Form';
+import { getUsersAction } from 'store/table/thunkAction';
+import Button from 'app/shared/Button';
+import Form from 'app/shared/Form';
 import DataGrid from './DataGrid/DataGrid';
 import Toolbar from './Toolbar/Toolbar';
 import useHome from './useHome';
