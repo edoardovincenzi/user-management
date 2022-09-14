@@ -35,7 +35,7 @@ export const postUserAction = createAsyncThunk(
 );
 
 export const getUserByIdAction = createAsyncThunk(
-  'table/getUserByIdAction',
+  'userManagement/getUserByIdAction',
   async (id: number, thunkAPI) => {
     const state = thunkAPI.getState() as IUserManagement;
     const getUserFromDataGrid = state?.userManagement?.usersDataGrid?.dataGrid

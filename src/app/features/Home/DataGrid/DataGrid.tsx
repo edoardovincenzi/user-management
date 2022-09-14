@@ -45,9 +45,9 @@ const DataGrid = ({ data, statusGetData, visible = true }: IProps) => {
     return <Spinner />;
   }
   return (
-    <div>
+    <div className={`${visible ? 'visible' : 'hidden'}`}>
       {data && data.length > 0 && !id ? (
-        <div className={`${visible ? 'visible' : 'hidden'}`}>
+        <div>
           <GridComponent
             dataSource={data}
             toolbar={toolbarOptions}
