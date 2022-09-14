@@ -23,8 +23,8 @@ const initialState: IUsersState = {
   },
 };
 
-export const tableSlice = createSlice({
-  name: 'table',
+export const userManagementSlice = createSlice({
+  name: 'userManagement',
   initialState,
   reducers: {
     resetDataGrid(state: IUsersState): IUsersState {
@@ -118,6 +118,6 @@ export const {
   removeOddDataGrid,
   updateRowById,
   resetUserDetail,
-} = tableSlice.actions;
+} = userManagementSlice.actions;
 
-export default tableSlice.reducer;
+export default userManagementSlice.reducer;

@@ -1,7 +1,7 @@
 import { IUser } from './api';
 
-export interface ITable {
-  table: IUsersState;
+export interface IUserManagement {
+  userManagement: IUsersState;
 }
 export interface IUsersState {
   usersDataGrid: IUsersDataGrid;

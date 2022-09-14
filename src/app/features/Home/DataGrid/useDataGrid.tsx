@@ -8,7 +8,7 @@ import { Button } from 'app/shared';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../../../store/hooks';
 import { IUser } from 'app/model/api';
-import { updateRowById } from '../../../../store/table/tableSlice';
+import { updateRowById } from '../../../../store/userManagement/userManagementSlice';
 
 const useDataGrid = () => {
   const dispatch = useAppDispatch();

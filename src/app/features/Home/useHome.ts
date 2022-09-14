@@ -3,10 +3,16 @@ import { useAppDispatch, useAppSelector } from 'store/hooks';
 import {
   selectUsersDataGridValue,
   selectStatusDataGridValue,
-} from 'store/table/selectors';
-import { getUsersAction, postUserAction } from 'store/table/thunkAction';
+} from 'store/userManagement/selectors';
+import {
+  getUsersAction,
+  postUserAction,
+} from 'store/userManagement/thunkAction';
 import { useDebouncedCallback } from 'use-debounce';
-import { removeOddDataGrid, resetUserDetail } from 'store/table/tableSlice';
+import {
+  removeOddDataGrid,
+  resetUserDetail,
+} from 'store/userManagement/userManagementSlice';
 import { IUser } from 'app/model/api';
 import { FormikProps, useFormik } from 'formik';
 

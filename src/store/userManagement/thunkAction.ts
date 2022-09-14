@@ -1,18 +1,18 @@
 import { IPostUser, IUser } from 'app/model/api';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { getUsers, postUser, getUserById } from 'app/api/apiCall';
-import { ITable } from 'app/model/store';
+import { IUserManagement } from 'app/model/store';
 import { FormikState } from 'formik';
 
 export const getUsersAction = createAsyncThunk(
-  'table/getUsersAction',
+  'userManagement/getUsersAction',
   async (state, thunkAPI) => {
     return await getUsers(thunkAPI.rejectWithValue);
   }
 );
 
 export const postUserAction = createAsyncThunk(
-  'table/postUserAction',
+  'userManagement/postUserAction',
   async (
     {
       user,
@@ -37,9 +37,11 @@ export const postUserAction = createAsyncThunk(
 export const getUserByIdAction = createAsyncThunk(
   'table/getUserByIdAction',
   async (id: number, thunkAPI) => {
-    const state = thunkAPI.getState() as ITable;
-    const getUserFromDataGrid = state?.table?.usersDataGrid?.dataGrid
-      ? state.table.usersDataGrid.dataGrid.filter((item) => item.id === id)[0]
+    const state = thunkAPI.getState() as IUserManagement;
+    const getUserFromDataGrid = state?.userManagement?.usersDataGrid?.dataGrid
+      ? state.userManagement.usersDataGrid.dataGrid.filter(
+          (item) => item.id === id
+        )[0]
       : null;
     return getUserFromDataGrid
       ? getUserFromDataGrid

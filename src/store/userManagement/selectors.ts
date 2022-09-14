@@ -3,13 +3,13 @@ import { IStatus } from 'app/model/store';
 import { RootState } from '../store';
 
 export const selectUsersDataGridValue = (state: RootState) =>
-  state.table.usersDataGrid.dataGrid;
+  state.userManagement.usersDataGrid.dataGrid;
 
 export const selectStatusDataGridValue = (state: RootState) =>
-  state.table.usersDataGrid.status;
+  state.userManagement.usersDataGrid.status;
 
 export const selectValueUserDetail = (state: RootState): IUser =>
-  state.table.userDetail.user;
+  state.userManagement.userDetail.user;
 
 export const selectStatusUserDetail = (state: RootState): IStatus =>
-  state.table.userDetail.status;
+  state.userManagement.userDetail.status;

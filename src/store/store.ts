@@ -1,4 +1,4 @@
-import tableSlice from './table/tableSlice';
+import userManagementSlice from './userManagement/userManagementSlice';
 import {
   configureStore,
   ThunkAction,
@@ -7,7 +7,7 @@ import {
 } from '@reduxjs/toolkit';
 
 export const rootReducer = combineReducers({
-  table: tableSlice,
+  userManagement: userManagementSlice,
 });
 
 export const store = configureStore({
