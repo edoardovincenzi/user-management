@@ -34,9 +34,16 @@ const useDataGrid = () => {
     showDeleteConfirmDialog: true,
   };
 
+  useEffect(() => {
+    return () => {
+      if (shouldCreate) {
+        navigate(`userDetails/${shouldCreate}`);
+      }
+    };
+  }, [shouldCreate]);
+
   const handleRedirectUserDetails = (id: number) => {
     setShouldCreate(id);
-    navigate(`userDetails/${id}`);
   };
 
   //any beacuse in documentation give me this type
