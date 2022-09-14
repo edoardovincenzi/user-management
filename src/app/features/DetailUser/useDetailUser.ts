@@ -1,12 +1,12 @@
-import { useAppDispatch, useAppSelector } from './../../../store/hooks';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { FormikProps, useFormik } from 'formik';
 import { useParams } from 'react-router-dom';
 import { IUser } from 'app/model/api';
-import { getUserByIdAction } from '../../../store/table/thunkAction';
+import { getUserByIdAction } from 'store/table/thunkAction';
 import {
   selectValueUserDetail,
   selectStatusUserDetail,
-} from '../../../store/table/selectors';
+} from 'store/table/selectors';
 import { useEffect } from 'react';
 
 const useDetailUser = () => {

@@ -14,7 +14,7 @@ const Footer = () => {
         >
           <div className="flex items-center justify-center gap-3 hover:underline">
             <CgWebsite />
-            <p>Sito web</p>
+            <p>Web site</p>
           </div>
         </a>
         <a
