@@ -8,7 +8,7 @@ interface IProps {
   style?: object;
 }
 
-const Button = ({
+export const Button = ({
   text,
   handleClick,
   type = 'button',
@@ -26,5 +26,3 @@ const Button = ({
     </button>
   );
 };
-
-export default Button;

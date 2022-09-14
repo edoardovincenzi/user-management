@@ -1,30 +1,14 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { FormikProps } from 'formik';
-import Button from './Button';
-import Input from './Input';
+import { Button, Input } from 'app/shared';
 import { IUser } from '../model/api';
-import { IUserDetail } from '../model/store';
-import Spinner from './Spinner';
 
 interface IProps {
   formDisabled?: boolean;
-  formData?: IUserDetail;
   formik: FormikProps<IUser>;
 }
 
-const Form = ({ formDisabled = false, formData, formik }: IProps) => {
-  useEffect(() => {
-    if (formData?.user && formDisabled) {
-      formik.setValues(formData.user);
-    }
-  }, [formData?.user]);
-
-  if (formDisabled && formData?.status === 'failed') {
-    return <p className="text-center text-red-600">Error for getting data</p>;
-  }
-  if (formDisabled && formData?.status === 'loading') {
-    return <Spinner />;
-  }
+export const Form = ({ formDisabled = false, formik }: IProps) => {
   return (
     <form
       className="border-2 border-gray-700 rounded-md py-8 px-3 w-full h-full"
@@ -112,5 +96,3 @@ const Form = ({ formDisabled = false, formData, formik }: IProps) => {
     </form>
   );
 };
-
-export default Form;

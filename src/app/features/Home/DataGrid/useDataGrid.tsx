@@ -1,17 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   FilterSettingsModel,
   PageSettingsModel,
 } from '@syncfusion/ej2-react-grids';
 import { ToolbarItems } from '@syncfusion/ej2-react-grids';
-import Button from 'app/shared/Button';
-import { Link } from 'react-router-dom';
+import { Button } from 'app/shared';
+import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../../../store/hooks';
 import { IUser } from 'app/model/api';
 import { updateRowById } from '../../../../store/table/tableSlice';
 
 const useDataGrid = () => {
   const dispatch = useAppDispatch();
+  const [id, setID] = useState<number | null>(null);
+  const navigate = useNavigate();
   const toolbarOptions: ToolbarItems[] = [
     'ColumnChooser',
     'Edit',
@@ -31,12 +33,17 @@ const useDataGrid = () => {
     allowEditing: true,
     showDeleteConfirmDialog: true,
   };
+
+  useEffect(() => {
+    if (id) {
+      navigate(`userDetails/${id}`);
+    }
+  }, [id]);
+
   //any beacuse in documentation give me this type
   const openDetailsUsers = (props: any): any => {
     return (
-      <Link to={`userDetails/${props.id}`}>
-        <Button text="Open details user" />
-      </Link>
+      <Button handleClick={() => setID(props.id)} text="Open details user" />
     );
   };
   //any beacuse in documentation give me this type
@@ -54,6 +61,7 @@ const useDataGrid = () => {
     openDetailsUsers,
     editOptions,
     actionComplete,
+    id,
   };
 };
 

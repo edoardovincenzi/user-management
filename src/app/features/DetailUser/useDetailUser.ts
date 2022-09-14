@@ -14,7 +14,7 @@ const useDetailUser = () => {
   const dispath = useAppDispatch();
   useEffect(() => {
     dispath(getUserByIdAction(Number(id)));
-  }, [id]);
+  }, []);
   const getValueUserById = useAppSelector(selectValueUserDetail);
   const getStatusUserById = useAppSelector(selectStatusUserDetail);
   const formik: FormikProps<IUser> = useFormik<IUser>({
@@ -27,6 +27,13 @@ const useDetailUser = () => {
     },
     onSubmit: (values) => {},
   });
+
+  useEffect(() => {
+    if (getValueUserById) {
+      formik.setValues(getValueUserById);
+    }
+  }, [getValueUserById]);
+
   return { formik, getValueUserById, getStatusUserById };
 };
 

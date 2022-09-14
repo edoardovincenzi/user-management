@@ -1,18 +1,12 @@
 import { useState, useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '../../../store/hooks';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
 import {
   selectUsersDataGridValue,
   selectStatusDataGridValue,
-} from '../../../store/table/selectors';
-import {
-  getUsersAction,
-  postUserAction,
-} from '../../../store/table/thunkAction';
+} from 'store/table/selectors';
+import { getUsersAction, postUserAction } from 'store/table/thunkAction';
 import { useDebouncedCallback } from 'use-debounce';
-import {
-  removeOddDataGrid,
-  resetUserDetail,
-} from '../../../store/table/tableSlice';
+import { removeOddDataGrid, resetUserDetail } from 'store/table/tableSlice';
 import { IUser } from 'app/model/api';
 import { FormikProps, useFormik } from 'formik';
 
@@ -21,7 +15,11 @@ const useHome = () => {
   const dataStatus = useAppSelector(selectStatusDataGridValue);
   const dispatch = useAppDispatch();
   const [showGrid, setShowGrid] = useState<boolean>(true);
+
   useEffect(() => {
+    if (!data) {
+      dispatch(getUsersAction());
+    }
     dispatch(resetUserDetail());
   }, []);
 
@@ -76,7 +74,6 @@ const useHome = () => {
     showGrid,
     dataStatus,
     data,
-    dispatch,
   };
 };
 

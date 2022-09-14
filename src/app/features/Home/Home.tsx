@@ -1,10 +1,9 @@
-import React, { useEffect } from 'react';
-import { getUsersAction } from 'store/table/thunkAction';
-import Button from 'app/shared/Button';
-import Form from 'app/shared/Form';
+import React from 'react';
+import { Button, Form } from 'app/shared';
 import DataGrid from './DataGrid/DataGrid';
 import Toolbar from './Toolbar/Toolbar';
 import useHome from './useHome';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
   const {
@@ -15,13 +14,7 @@ const Home = () => {
     showGrid,
     dataStatus,
     data,
-    dispatch,
   } = useHome();
-  useEffect(() => {
-    if (!data) {
-      dispatch(getUsersAction());
-    }
-  }, []);
 
   return (
     <div className="flex flex-col w-full px-2">

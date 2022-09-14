@@ -2,7 +2,7 @@ import React from 'react';
 import Footer from './core/Footer';
 import Navbar from './core/Navbar';
 import '../index.css';
-import WrapContainer from './shared/WrapContainer';
+import { WrapContainer } from 'app/shared';
 import Router from './Router';
 
 function App() {

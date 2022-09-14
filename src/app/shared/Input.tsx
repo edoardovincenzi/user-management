@@ -12,7 +12,7 @@ interface IProps {
   disabled?: boolean;
 }
 
-const Input = ({
+export const Input = ({
   type,
   id,
   placeholder = '',
@@ -38,5 +38,3 @@ const Input = ({
     />
   );
 };
-
-export default Input;
