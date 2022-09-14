@@ -12,7 +12,7 @@ import { updateRowById } from '../../../../store/userManagement/userManagementSl
 
 const useDataGrid = () => {
   const dispatch = useAppDispatch();
-  const [id, setID] = useState<number | null>(null);
+  const [shouldCreate, setShouldCreate] = useState<number | null>(null);
   const navigate = useNavigate();
   const toolbarOptions: ToolbarItems[] = [
     'ColumnChooser',
@@ -34,16 +34,18 @@ const useDataGrid = () => {
     showDeleteConfirmDialog: true,
   };
 
-  useEffect(() => {
-    if (id) {
-      navigate(`userDetails/${id}`);
-    }
-  }, [id]);
+  const handleRedirectUserDetails = (id: number) => {
+    setShouldCreate(id);
+    navigate(`userDetails/${id}`);
+  };
 
   //any beacuse in documentation give me this type
   const openDetailsUsers = (props: any): any => {
     return (
-      <Button handleClick={() => setID(props.id)} text="Open details user" />
+      <Button
+        handleClick={() => handleRedirectUserDetails(props.id)}
+        text="Open details user"
+      />
     );
   };
   //any beacuse in documentation give me this type
@@ -61,7 +63,7 @@ const useDataGrid = () => {
     openDetailsUsers,
     editOptions,
     actionComplete,
-    id,
+    shouldCreate,
   };
 };
 

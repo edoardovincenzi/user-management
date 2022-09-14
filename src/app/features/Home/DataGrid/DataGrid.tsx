@@ -31,7 +31,7 @@ const DataGrid = ({ data, statusGetData, visible = true }: IProps) => {
     openDetailsUsers,
     editOptions,
     actionComplete,
-    id,
+    shouldCreate,
   } = useDataGrid();
 
   if ((!data || data.length < 1) && statusGetData === 'failed') {
@@ -46,7 +46,7 @@ const DataGrid = ({ data, statusGetData, visible = true }: IProps) => {
   }
   return (
     <div className={`${visible ? 'visible' : 'hidden'}`}>
-      {data && data.length > 0 && !id ? (
+      {data && data.length > 0 && !shouldCreate ? (
         <div>
           <GridComponent
             dataSource={data}
