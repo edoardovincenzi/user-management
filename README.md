@@ -44,3 +44,7 @@ Create a grid to render users from the JSON placeholder API (https://jsonplaceho
 - Tailwind
 - Formik
 - use-debounce
+
+## Library test implemented ( Work in progress )
+
+- Cypress for E2E 
