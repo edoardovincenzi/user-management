@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+import { selectValueUserDetail } from './../../../store/userManagement/selectors';
 import { useState, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import {
@@ -19,7 +21,9 @@ import { FormikProps, useFormik } from 'formik';
 const useHome = () => {
   const data = useAppSelector(selectUsersDataGridValue);
   const dataStatus = useAppSelector(selectStatusDataGridValue);
+  const userDetails = useAppSelector(selectValueUserDetail);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const [showGrid, setShowGrid] = useState<boolean>(true);
 
   useEffect(() => {
@@ -28,6 +32,12 @@ const useHome = () => {
     }
     dispatch(resetUserDetail());
   }, []);
+
+  useEffect(() => {
+    if (userDetails.id !== -1) {
+      navigate(`userDetails/${userDetails.id}`);
+    }
+  }, [userDetails]);
 
   const initialValues = {
     id: -1,

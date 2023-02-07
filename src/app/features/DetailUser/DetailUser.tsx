@@ -1,10 +1,10 @@
-import { Link } from 'react-router-dom';
 import { Button } from 'app/shared';
 import useDetailUser from './useDetailUser';
 import FormDetailUser from './FormDetailUser/FormDetailUser';
 
 const DetailUser = () => {
-  const { formik, getValueUserById, getStatusUserById } = useDetailUser();
+  const { formik, getValueUserById, getStatusUserById, resetUserDetails } =
+    useDetailUser();
   return (
     <div className="flex flex-col justify-center items-center gap-6">
       <FormDetailUser
@@ -12,9 +12,7 @@ const DetailUser = () => {
         data={getValueUserById}
         formik={formik}
       />
-      <Link to={'/'}>
-        <Button text="Back to home" />
-      </Link>
+      <Button handleClick={resetUserDetails} text="Back to home" />
     </div>
   );
 };

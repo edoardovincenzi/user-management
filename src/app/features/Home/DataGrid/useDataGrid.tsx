@@ -1,19 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {
   FilterSettingsModel,
   PageSettingsModel,
 } from '@syncfusion/ej2-react-grids';
 import { ToolbarItems } from '@syncfusion/ej2-react-grids';
 import { Button } from 'app/shared';
-import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../../../store/hooks';
 import { IUser } from 'app/model/api';
 import { updateRowById } from '../../../../store/userManagement/userManagementSlice';
+import { getUserByIdAction } from 'store/userManagement/thunkAction';
 
 const useDataGrid = () => {
   const dispatch = useAppDispatch();
-  const [shouldCreate, setShouldCreate] = useState<number | null>(null);
-  const navigate = useNavigate();
   const toolbarOptions: ToolbarItems[] = [
     'ColumnChooser',
     'Edit',
@@ -34,16 +32,8 @@ const useDataGrid = () => {
     showDeleteConfirmDialog: true,
   };
 
-  useEffect(() => {
-    return () => {
-      if (shouldCreate) {
-        navigate(`userDetails/${shouldCreate}`);
-      }
-    };
-  }, [shouldCreate]);
-
   const handleRedirectUserDetails = (id: number) => {
-    setShouldCreate(id);
+    dispatch(getUserByIdAction(id));
   };
 
   //any beacuse in documentation give me this type
@@ -70,7 +60,6 @@ const useDataGrid = () => {
     openDetailsUsers,
     editOptions,
     actionComplete,
-    shouldCreate,
   };
 };
 

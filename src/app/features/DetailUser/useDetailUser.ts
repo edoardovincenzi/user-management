@@ -1,6 +1,6 @@
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { FormikProps, useFormik } from 'formik';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { IUser } from 'app/model/api';
 import { getUserByIdAction } from 'store/userManagement/thunkAction';
 import {
@@ -8,12 +8,14 @@ import {
   selectStatusUserDetail,
 } from 'store/userManagement/selectors';
 import { useEffect } from 'react';
+import { resetUserDetail } from 'store/userManagement/userManagementSlice';
 
 const useDetailUser = () => {
   const { id } = useParams();
-  const dispath = useAppDispatch();
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   useEffect(() => {
-    dispath(getUserByIdAction(Number(id)));
+    dispatch(getUserByIdAction(Number(id)));
   }, []);
   const getValueUserById = useAppSelector(selectValueUserDetail);
   const getStatusUserById = useAppSelector(selectStatusUserDetail);
@@ -27,6 +29,10 @@ const useDetailUser = () => {
     },
     onSubmit: (values) => {},
   });
+  const resetUserDetails = () => {
+    dispatch(resetUserDetail());
+    navigate('/');
+  };
 
   useEffect(() => {
     if (getValueUserById) {
@@ -34,7 +40,7 @@ const useDetailUser = () => {
     }
   }, [getValueUserById]);
 
-  return { formik, getValueUserById, getStatusUserById };
+  return { formik, getValueUserById, getStatusUserById, resetUserDetails };
 };
 
 export default useDetailUser;
