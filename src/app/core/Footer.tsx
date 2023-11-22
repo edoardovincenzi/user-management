@@ -9,7 +9,7 @@ const Footer = () => {
       <div className="w-screen flex justify-center gap-4">
         <a
           target="_blank"
-          href="https://edoardovincenzi.netlify.app/"
+          href="https://www.edoardovincenzi.it/en"
           rel="noreferrer"
         >
           <div className="flex items-center justify-center gap-3 hover:underline">
